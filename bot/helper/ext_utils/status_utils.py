@@ -31,20 +31,20 @@ SIZE_UNITS = [
 
 
 class MirrorStatus:
-    STATUS_UPLOADING = "Upload 📤"
-    STATUS_DOWNLOADING = "Download 📥"
-    STATUS_CLONING = "Clone 🔃"
-    STATUS_QUEUEDL = "QueueDL ⏳"
-    STATUS_QUEUEUP = "QueueUL ⏳"
-    STATUS_PAUSED = "Paused ⛔️"
-    STATUS_ARCHIVING = "Archive 🛠"
-    STATUS_EXTRACTING = "Extract 📂"
-    STATUS_SPLITTING = "Split ✂️"
-    STATUS_CHECKING = "CheckUp ⏱"
-    STATUS_SEEDING = "Seed 🌧"
-    STATUS_SAMVID = "SampleVid 🎬"
-    STATUS_CONVERTING = "Convert ♻️"
-    STATUS_METADATA = "Metadata 📝"
+    STATUS_UPLOADING = "Upload"
+    STATUS_DOWNLOADING = "Download"
+    STATUS_CLONING = "Clone"
+    STATUS_QUEUEDL = "QueueDL"
+    STATUS_QUEUEUP = "QueueUL"
+    STATUS_PAUSED = "Paused"
+    STATUS_ARCHIVING = "Archive"
+    STATUS_EXTRACTING = "Extract"
+    STATUS_SPLITTING = "Split"
+    STATUS_CHECKING = "CheckUp"
+    STATUS_SEEDING = "Seed"
+    STATUS_SAMVID = "SampleVid"
+    STATUS_CONVERTING = "Convert"
+    STATUS_METADATA = "Metadata"
 
 
 STATUSES = {
@@ -191,8 +191,8 @@ def get_progress_bar_string(pct):
         100
     )
     cFull = int(p // 10)
-    p_str = "█" * cFull
-    p_str += "▒" * (10 - cFull)
+    p_str = "■" * cFull
+    p_str += "▨" * (10 - cFull)
     return f"{p_str}"
 
 
@@ -252,14 +252,14 @@ async def get_readable_message(
             and int(config_dict["AUTO_DELETE_MESSAGE_DURATION"]) > 0
         ):
             msg += (
-                f"<b><i>\n#Zee{index + start_position}: "
+                f"<b><i>\n{index + start_position}: "
                 f"{escape(f"{task.name()}")}\n</i></b>"
                 if elapse <= config_dict["AUTO_DELETE_MESSAGE_DURATION"]
-                else f"\n<b>#Zee{index + start_position}...(Processing)</b>"
+                else f"\n<b>{index + start_position}...(Processing)</b>"
             )
         else:
             msg += (
-                f"<b><i>\n#Zee{index + start_position}: "
+                f"<b><i>\n{index + start_position}: "
                 f"{escape(f"{task.name()}")}\n</i></b>"
             )
         if tstatus not in [
@@ -274,14 +274,14 @@ async def get_readable_message(
                 else task.progress()
             )
             msg += (
-                f"\n{get_progress_bar_string(progress)} » <b><i>{progress}</i></b>"
+                f"\n{get_progress_bar_string(progress)} <b><i>{progress}</i></b>"
                 f"\n<code>Status :</code> <b>{tstatus}</b>"
                 f"\n<code>Done   :</code> {task.processed_bytes()} of {task.size()}"
                 f"\n<code>Speed  :</code> {task.speed()}"
                 f"\n<code>ETA    :</code> {task.eta()}"
                 f"\n<code>Past   :</code> {elapsed}"
                 f"\n<code>User   :</code> <b>{user_tag}</b>"
-                f"\n<code>UserID :</code> ||{task.listener.user_id}||"
+                f"\n<code>UserID :</code> {task.listener.user_id}"
                 f"\n<code>Upload :</code> {task.listener.mode}"
                 f"\n<code>Engine :</code> <b><i>{task.engine}</i></b>"
             )
@@ -320,7 +320,7 @@ async def get_readable_message(
                 f"\n<code>UserID :</code> ||{task.listener.user_id}||"
                 f"\n<code>Engine :</code> {task.engine}"
             )
-        msg += f"\n⚠️ {cancel_task}\n\n"
+        msg += f"\nGid: {cancel_task}\n\n"
 
     if len(msg) == 0:
         if status == "All":
@@ -333,18 +333,18 @@ async def get_readable_message(
     buttons = ButtonMaker()
     if is_user:
         buttons.data_button(
-            "ʀᴇғʀᴇsʜ",
+            "refresh",
             f"status {sid} ref",
             position="header"
         )
     if not is_user:
         buttons.data_button(
-            "ᴛᴀsᴋs\nɪɴғᴏ",
+            "tasks\ninfo",
             f"status {sid} ov",
             position="footer"
         )
         buttons.data_button(
-            "sʏsᴛᴇᴍ\nɪɴғᴏ",
+            "system\ninfo",
             f"status {sid} stats",
             position="footer"
         )
@@ -356,7 +356,7 @@ async def get_readable_message(
             position="header"
         )
         buttons.data_button(
-            f"ᴘᴀɢᴇs\n{page_no}/{pages}",
+            f"pages\n{page_no}/{pages}",
             f"status {sid} ref",
             position="header"
         )

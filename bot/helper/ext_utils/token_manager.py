@@ -200,9 +200,9 @@ async def start(client, message):
         config_dict["DM_MODE"]
         and message.chat.type != message.chat.type.SUPERGROUP
     ):
-        start_string = "Bot Started.\n" \
-                       "Now I will send all of your stuffs here.\n" \
-                       "Use me at: @Z_Mirror"
+        start_string = "Heyya, Bot Started.\n" \
+                       "Now I can send your stuffs here..\n" \
+                       "Use me at: @RaidenMirrors"
     elif (
         not config_dict["DM_MODE"]
         and message.chat.type != message.chat.type.SUPERGROUP

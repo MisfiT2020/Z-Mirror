@@ -292,14 +292,14 @@ USER_SESSION_STRING = environ.get(
 if len(USER_SESSION_STRING) != 0:
     try:
         user = TgClient(
-            "zeeu",
+            "raiden",
             TELEGRAM_API,
             TELEGRAM_HASH,
             session_string=USER_SESSION_STRING,
             no_updates=True,
-            app_version="@Z_Mirror Session",
-            device_model="@Z_Mirror Bot",
-            system_version="@Z_Mirror Server",
+            app_version="@raiden Session",
+            device_model="@raiden Bot",
+            system_version="@raiden Server",
         ).start()
         IS_PREMIUM_USER = user.me.is_premium # type: ignore
         log_info(f"Successfully logged into @{user.me.username} DC: {user.session.dc_id}.") # type: ignore
@@ -1175,7 +1175,7 @@ if GDRIVE_ID:
     drives_ids.append(GDRIVE_ID)
     index_urls.append(INDEX_URL)
 
-KEY = ("@Z_Mirror")
+KEY = ("@raiden")
 
 if ospath.exists("list_drives.txt"):
     with open(
@@ -1289,13 +1289,13 @@ aria2c_global = [
 ]
 
 bot = TgClient(
-    "zeeb",
+    "raiden",
     TELEGRAM_API,
     TELEGRAM_HASH,
     bot_token=BOT_TOKEN,
-    app_version="@Z_Mirror Session",
-    device_model="@Z_Mirror Bot",
-    system_version="@Z_Mirror Server",
+    app_version="@raiden Session",
+    device_model="@raiden Bot",
+    system_version="@raiden Server",
 ).start()
 
 BASE += ("oAtiUyppVYRQkuWg8DG2p")
